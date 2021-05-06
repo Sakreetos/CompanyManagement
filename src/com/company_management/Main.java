@@ -1,16 +1,14 @@
 package com.company_management;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 
 public class Main {
 
-    private static List<Employee> empList = new ArrayList<Employee>();
-    private static List<Company> companyInfo = new ArrayList<Company>();
+    private static final List<Employee> empList = new ArrayList<>();
+    private static final List<Company> companyInfo = new ArrayList<>();
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         empList.add(new Employee("test", 900, "test country", "test city", "test street", 5, "male", 20, 2));
         empList.add(new Employee("test name1", 2000, "test country1", "test city1", "test street1", 6, "female", 21, 30));
@@ -22,51 +20,49 @@ public class Main {
 
         int choice;
         do {
-            System.out.print("\nList of possible commands:\n" +
-                    "\t1. Read about company\n" +
-                    "\t2. View list of employees\n" +
-                    "\t3. View employees, which work more than year.\n" +
-                    "\t4. View employees, which are girls and live in Kiev\n" +
-                    "\t5. Add an employee\n" +
-                    "\t6. Fire an employee\n" +
-                    "\t7*. Fire an employee, with salary less then 1000 and which works less then year\n" +
-                    "\t8*. Change an employee information\n" +
-                    "\t9*. View list of employees: first women and then men\n" +
-                    "\t10*. View employees, which works between 100 and 200 hours (use Date)\n"+
-                    "\t11*. Exit\n");
-
+            MainMenu();
             Scanner input = new Scanner(System.in);
             choice = input.nextInt();
 
             switch (choice) {
                 case 1:
-                    GetCompanyInfo(companyInfo);
+                    GetCompanyInfo();
+                    PressEnterToContinue();
                     break;
                 case 2:
                     GetEmployeeList(empList);
+                    PressEnterToContinue();
                     break;
                 case 3:
                     GetExperiencedEmployee(empList);
+                    PressEnterToContinue();
                     break;
                 case 4:
                     GetKievGirlsEmployee(empList);
+                    PressEnterToContinue();
                     break;
                 case 5:
                     AddEmployee(empList);
+                    PressEnterToContinue();
                     break;
                 case 6:
                     FireEmployee(empList);
+                    PressEnterToContinue();
                     break;
                 case 7:
                     FireLoserEmployee(empList);
+                    PressEnterToContinue();
                     break;
                 case 8:
                     ChangeEmployeeInfo(empList);
+                    PressEnterToContinue();
                     break;
                 case 9:
                     WomenCameFirst(empList);
+                    PressEnterToContinue();
                 case 10:
                     WorkingBetween(empList);
+                    PressEnterToContinue();
                     break;
                 case 11:
                     System.out.print("Bye bye");
@@ -80,8 +76,8 @@ public class Main {
 
     }
 
-    private static void GetCompanyInfo(List<Company> companyList) {
-        for (Company info : companyInfo) {
+    private static void GetCompanyInfo() {
+        for (Company info : Main.companyInfo) {
             System.out.println(info.getCompanyName() + " (" + info.getCountry() + ", " + info.getCity() + ", " + info.getStreet() + " " + info.getBuilding() + ") " + "\n Employee`s amount: " + empList.size());
             System.out.println("Employee`s: ");
             for (Employee fullList : empList) {
@@ -275,4 +271,26 @@ public class Main {
             }
         }
     }
+
+    private static void MainMenu(){
+        System.out.print("\nList of possible commands:\n" +
+                "\t1. Read about company\n" +
+                "\t2. View list of employees\n" +
+                "\t3. View employees, which work more than year.\n" +
+                "\t4. View employees, which are girls and live in Kiev\n" +
+                "\t5. Add an employee\n" +
+                "\t6. Fire an employee\n" +
+                "\t7*. Fire an employee, with salary less then 1000 and which works less then year\n" +
+                "\t8*. Change an employee information\n" +
+                "\t9*. View list of employees: first women and then men\n" +
+                "\t10*. View employees, which works between 100 and 200 hours (use Date)\n"+
+                "\t11*. Exit\n");
+    }
+
+    public static void PressEnterToContinue(){
+        System.out.println("\nPress \"ENTER\" to go back to the main menu..");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
+    }
+
 }
