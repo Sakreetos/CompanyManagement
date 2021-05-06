@@ -16,7 +16,7 @@ public class Main {
         empList.add(new Employee("test name3", 4000, "test country3", "Kiev", "test street3", 8, "female", 23, 50));
         empList.add(new Employee("test name4", 5000, "test country4", "test city4", "test street4", 9, "male", 24, 8));
 
-        companyInfo.add(new Company("Test Company name", "test company country", "test company city", "test company street", 123));
+        companyInfo.add(new Company("Something Inc", "Ukraine", "Kiev", "Shevchenka street", 123));
 
         int choice;
         do {
@@ -30,38 +30,38 @@ public class Main {
                     PressEnterToContinue();
                     break;
                 case 2:
-                    GetEmployeeList(empList);
+                    GetEmployeeList();
                     PressEnterToContinue();
                     break;
                 case 3:
-                    GetExperiencedEmployee(empList);
+                    GetExperiencedEmployee();
                     PressEnterToContinue();
                     break;
                 case 4:
-                    GetKievGirlsEmployee(empList);
+                    GetKievGirlsEmployee();
                     PressEnterToContinue();
                     break;
                 case 5:
-                    AddEmployee(empList);
+                    AddEmployee();
                     PressEnterToContinue();
                     break;
                 case 6:
-                    FireEmployee(empList);
+                    FireEmployee();
                     PressEnterToContinue();
                     break;
                 case 7:
-                    FireLoserEmployee(empList);
+                    FireLoserEmployee();
                     PressEnterToContinue();
                     break;
                 case 8:
-                    ChangeEmployeeInfo(empList);
+                    ChangeEmployeeInfo();
                     PressEnterToContinue();
                     break;
                 case 9:
-                    WomenCameFirst(empList);
+                    WomenCameFirst();
                     PressEnterToContinue();
                 case 10:
-                    WorkingBetween(empList);
+                    WorkingBetween();
                     PressEnterToContinue();
                     break;
                 case 11:
@@ -77,41 +77,69 @@ public class Main {
     }
 
     private static void GetCompanyInfo() {
+        String companyTableFormat = "| %-20s | %-10s | %-10s | %-15s | %-8d |";
+
+        System.out.format("+----------------------+------------+------------+-------------------+----------+%n");
+        System.out.format("| Company Name         | Country    | City       | Street            | Building |%n");
+        System.out.format("+----------------------+------------+------------+-------------------+----------+%n");
         for (Company info : Main.companyInfo) {
-            System.out.println(info.getCompanyName() + " (" + info.getCountry() + ", " + info.getCity() + ", " + info.getStreet() + " " + info.getBuilding() + ") " + "\n Employee`s amount: " + empList.size());
-            System.out.println("Employee`s: ");
-            for (Employee fullList : empList) {
-                System.out.println(fullList.getName());
-            }
+            System.out.format(companyTableFormat, info.getCompanyName(), info.getCountry(), info.getCity(), info.getStreet(), info.getBuilding(), empList.size());
+            System.out.format("\n+----------------------+------------+------------+-------------------+----------+%n");
+        }
+        String employeeTableFormat = "| %-50s |";
+        System.out.format("+----------------------------------------------------+%n");
+        System.out.format("| Employee`s of our company                          |%n");
+        System.out.format("+----------------------------------------------------+%n");
+
+        for (Employee fullList : empList) {
+            System.out.format(employeeTableFormat, fullList.getName());
+            System.out.format("\n+----------------------------------------------------+%n");
         }
     }
 
-    private static void GetEmployeeList(List<Employee> empList){
-        for (Employee fullList : empList) {
-            System.out.println("Name: " + fullList.getName() + "\n" + "Salary: " + fullList.getSalary() + "\nAddress: " + fullList.getCountry() + ", " + fullList.getCity() + ", " + fullList.getStreet() + " " + fullList.getBuilding() + "\n" + "Sex: " + fullList.getSex() + "\n" + "Age: " + fullList.getAge() + "\n" + "Exprerience: " + fullList.getWorkingExperience() + " months \n");
+    private static void GetEmployeeList(){
+        String employeeTableFormat = "| %-50s | %-45s | %-7s | %-5d | %-20d |";
+        System.out.format("+----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
+        System.out.format("| Employee`s name                                    | Address                                       | Sex     | Age   | Experience(in month) |%n");
+        System.out.format("+----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
+        for (Employee fullList : Main.empList) {
+            System.out.format(employeeTableFormat, fullList.name, fullList.country + ", " + fullList.city + ", " + fullList.street + ", " + fullList.building, fullList.sex, fullList.age, fullList.workingExperience);
+            System.out.format("\n-----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
         }
     }
 
-    private static void GetExperiencedEmployee(List<Employee> empList){
-        for (Employee fullList : empList) {
+    private static void GetExperiencedEmployee(){
+        String employeeTableFormat = "| %-50s | %-45s | %-7s | %-5d | %-20d |";
+        System.out.format("+----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
+        System.out.format("| Employee`s name                                    | Address                                       | Sex     | Age   | Experience(in month) |%n");
+        System.out.format("+----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
+        for (Employee fullList : Main.empList) {
             if (fullList.getWorkingExperience() > 12) {
-                System.out.println("Name: " + fullList.getName() + "\n" + "Salary: " + fullList.getSalary() + "\n" + fullList.getCountry() + ", " + fullList.getCity() + ", " + fullList.getStreet() + " " + fullList.getBuilding() + "\n" + "Sex: " + fullList.getSex() + "\n" + "Age: " + fullList.getAge() + "\n" + "Exprerience: " + fullList.getWorkingExperience() + " months \n");
+                System.out.format(employeeTableFormat, fullList.name, fullList.country + ", " + fullList.city + ", " + fullList.street + ", " + fullList.building, fullList.sex, fullList.age, fullList.workingExperience);
+                System.out.format("\n-----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
+
             }
         }
     }
 
-    private static void GetKievGirlsEmployee(List<Employee> empList){
-        for (Employee fullList : empList) {
+    private static void GetKievGirlsEmployee(){
+        String employeeTableFormat = "| %-50s | %-45s | %-7s | %-5d | %-20d |";
+        System.out.format("+----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
+        System.out.format("| Employee`s name                                    | Address                                       | Sex     | Age   | Experience(in month) |%n");
+        System.out.format("+----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
+        for (Employee fullList : Main.empList) {
             if (fullList.getSex().equals("female") && fullList.getCity().equals("Kiev")) {
-                System.out.println("Name: " + fullList.getName() + "\n" + "Salary: " + fullList.getSalary() + "\n" + fullList.getCountry() + ", " + fullList.getCity() + ", " + fullList.getStreet() + " " + fullList.getBuilding() + "\n" + "Sex: " + fullList.getSex() + "\n" + "Age: " + fullList.getAge() + "\n" + "Exprerience: " + fullList.getWorkingExperience() + " months \n");
+                System.out.format(employeeTableFormat, fullList.name, fullList.country + ", " + fullList.city + ", " + fullList.street + ", " + fullList.building, fullList.sex, fullList.age, fullList.workingExperience);
+                System.out.format("\n-----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
             }
         }
     }
 
-    private static void AddEmployee(List<Employee> empList){
+    private static void AddEmployee(){
         Scanner input = new Scanner(System.in);
         System.out.print("Employee name: ");
-        String name = input.next();
+        String name="";
+        name+=input.nextLine();
         System.out.print("Employee salary: ");
         int salary = input.nextInt();
         System.out.print("Employee country: ");
@@ -128,136 +156,165 @@ public class Main {
         int age = input.nextInt();
         System.out.print("Employee experience in month: ");
         int experience = input.nextInt();
-        empList.add(new Employee(name, salary, country, city, street, building, sex, age, experience));
-
+        Main.empList.add(new Employee(name, salary, country, city, street, building, sex, age, experience));
+        System.out.println("\nEmployee: " + name + " was added");
     }
 
-    private static void FireEmployee(List<Employee> empList){
+    private static void FireEmployee(){
         Scanner input = new Scanner(System.in);
         System.out.print("Who should be fired(enter name): ");
         String name = input.nextLine();
-        for (Employee emp : empList) {
-            if (name.equals(emp.name)) {
-                empList.remove(emp);
-                System.out.println(name + " was fired");
-            } else {
-                System.out.println("Wrong name or there is no such employee in your company!!!");
-            }
+        boolean result = Main.empList.removeIf(emp -> name.equals(emp.name));
+        if (result){
+            System.out.println("Employee " + name + " was fired");
+        }else {
+            System.out.println("Something went wrong. Please check name and try again!");
         }
     }
 
-    private static void FireLoserEmployee(List<Employee> empList){
-        for (Employee emp : empList) {
-            if (emp.salary < 1000 && emp.workingExperience < 12) {
-                System.out.println(emp.name + " was fired");
-                empList.remove(emp);
-            }
+    private static void FireLoserEmployee(){
+        boolean result = Main.empList.removeIf(emp -> emp.getSalary()< 1000 && emp.getWorkingExperience() < 12);
+        if (result){
+            System.out.println("Done!");
+        }else {
+            System.out.println("No one was fired!");
+        }
+        }
+
+    private static void ChangeEmployeeInfo(){
+
+        int choice;
+
+        do {
+            Scanner input = new Scanner(System.in);
+            System.out.print("Which employee info should be changed(name): ");
+            String name = input.next();
+            System.out.println("What should be changed?:\n" +
+                    "1. Name\n" +
+                    "2. Salary\n" +
+                    "3. Address\n" +
+                    "4. Sex\n" +
+                    "5. Age\n" +
+                    "6. Experience");
+
+            choice = input.nextInt();
+
+                switch (choice) {
+                    case 1:
+                        input.nextLine();
+                        System.out.print("Enter new employee name: ");
+                        String newName="";
+                        newName+=input.nextLine();
+                        for (Employee emp: Main.empList) {
+                            if (emp.name.equals(name)){
+                                int index = Main.empList.indexOf(emp);
+                                emp.name = newName;
+                                Main.empList.set(index, emp);
+                                System.out.println("Done!");
+                            }
+                        }
+                        break;
+                    case 2:
+                        input.nextLine();
+                        System.out.print("Enter new employee salary: ");
+                        int newSalary = input.nextInt();
+                        for (Employee emp: Main.empList) {
+                            if (emp.name.equals(name)){
+                                int index = Main.empList.indexOf(emp);
+                                emp.salary = newSalary;
+                                Main.empList.set(index, emp);
+                                System.out.println("Done!");
+                            }
+                        }
+                        break;
+                    case 3:
+                        input.nextLine();
+                        System.out.print("Employee country: ");
+                        String country = input.next();
+                        System.out.print("Employee city: ");
+                        String city = input.next();
+                        System.out.print("Employee street: ");
+                        String street = input.next();
+                        System.out.print("Employee building: ");
+                        input.nextLine();
+                        int building = input.nextInt();
+                        for (Employee emp: Main.empList) {
+                            if (emp.name.equals(name)){
+                                int index = Main.empList.indexOf(emp);
+                                emp.country = country;
+                                emp.city = city;
+                                emp.street = street;
+                                emp.building = building;
+                                Main.empList.set(index, emp);
+                                System.out.println("Done!");
+                            }
+                        }
+                        break;
+                    case 4:
+                        input.nextLine();
+                        System.out.print("Enter new employee sex: ");
+                        String newSex = input.nextLine();
+                        for (Employee emp: Main.empList) {
+                            if (emp.name.equals(name)){
+                                int index = Main.empList.indexOf(emp);
+                                emp.sex = newSex;
+                                Main.empList.set(index, emp);
+                                System.out.println("Done!");
+                            }
+                        }
+                        break;
+                    case 5:
+                        input.nextLine();
+                        System.out.print("Enter new employee age: ");
+                        int newAge = input.nextInt();
+                        for (Employee emp: Main.empList) {
+                            if (emp.name.equals(name)){
+                                int index = Main.empList.indexOf(emp);
+                                emp.age = newAge;
+                                Main.empList.set(index, emp);
+                                System.out.println("Done!");
+                            }
+                        }
+                        break;
+                    case 6:
+                        input.nextLine();
+                        System.out.print("Enter new employee experience(in month): ");
+                        int newExperience = input.nextInt();
+                        for (Employee emp: Main.empList) {
+                            if (emp.name.equals(name)){
+                                int index = Main.empList.indexOf(emp);
+                                emp.workingExperience = newExperience;
+                                Main.empList.set(index, emp);
+                                System.out.println("Done!");
+                            }
+                        }
+                        break;
+                    case 7:
+                        break;
+                    default:
+                        System.out.println("Wrong option!!!");
+                }
+        }while (choice == 7);
+    }
+
+    private  static void WomenCameFirst(){
+        String employeeTableFormat = "| %-50s | %-45s | %-7s | %-5d | %-20d |";
+        System.out.format("+----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
+        System.out.format("| Employee`s name                                    | Address                                       | Sex     | Age   | Experience(in month) |%n");
+        System.out.format("+----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
+        Main.empList.sort(Comparator.comparing(Employee::getSex));
+        for (Employee emp: Main.empList){
+            System.out.format(employeeTableFormat, emp.name, emp.country + ", " + emp.city + ", " + emp.street + ", " + emp.building, emp.sex, emp.age, emp.workingExperience);
+            System.out.format("\n-----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
         }
     }
 
-    private static void ChangeEmployeeInfo(List<Employee> empList){
-        Scanner input = new Scanner(System.in);
-        System.out.print("Which employee info should be changed(name): ");
-        String name = input.next();
-        System.out.println("What should be changed?:\n" +
-                "1. Name\n" +
-                "2. Salary\n" +
-                "3. Address\n" +
-                "4. Sex\n" +
-                "5. Age\n" +
-                "6. Experience");
-        int choice = input.nextInt();
-        switch (choice) {
-            case 1:
-                input.nextLine();
-                System.out.print("Enter new employee name: ");
-                String newName = input.nextLine();
-                for (Employee emp: empList) {
-                    if (emp.name.equals(name)){
-                       int index = empList.indexOf(emp);
-                       emp.name = newName;
-                       empList.set(index, emp);
-                    }
-                }
-            case 2:
-                input.nextLine();
-                System.out.print("Enter new employee salary: ");
-                int newSalary = input.nextInt();
-                for (Employee emp: empList) {
-                    if (emp.name.equals(name)){
-                        int index = empList.indexOf(emp);
-                        emp.salary = newSalary;
-                        empList.set(index, emp);
-                    }
-                }
-            case 3:
-                input.nextLine();
-                System.out.print("Employee country: ");
-                String country = input.next();
-                System.out.print("Employee city: ");
-                String city = input.next();
-                System.out.print("Employee street: ");
-                String street = input.next();
-                System.out.print("Employee building: ");
-                input.nextLine();
-                int building = input.nextInt();
-                for (Employee emp: empList) {
-                    if (emp.name.equals(name)){
-                        int index = empList.indexOf(emp);
-                        emp.country = country;
-                        emp.city = city;
-                        emp.street = street;
-                        emp.building = building;
-                        empList.set(index, emp);
-                    }
-                }
-            case 4:
-                input.nextLine();
-                System.out.print("Enter new employee sex: ");
-                String newSex = input.nextLine();
-                for (Employee emp: empList) {
-                    if (emp.name.equals(name)){
-                        int index = empList.indexOf(emp);
-                        emp.sex = newSex;
-                        empList.set(index, emp);
-                    }
-                }
-            case 5:
-                input.nextLine();
-                System.out.print("Enter new employee age: ");
-                int newAge = input.nextInt();
-                for (Employee emp: empList) {
-                    if (emp.name.equals(name)){
-                        int index = empList.indexOf(emp);
-                        emp.age = newAge;
-                        empList.set(index, emp);
-                    }
-                }
-            case 6:
-                input.nextLine();
-                System.out.print("Enter new employee experience(in month): ");
-                int newExperiance = input.nextInt();
-                for (Employee emp: empList) {
-                    if (emp.name.equals(name)){
-                        int index = empList.indexOf(emp);
-                        emp.workingExperience = newExperiance;
-                        empList.set(index, emp);
-                    }
-                }
-            default:
-                System.out.println("Wrong option!!!");
-        }
-    }
-
-    private  static void WomenCameFirst(List<Employee> empList){
-        empList.sort(Comparator.comparing(Employee::getSex));
-        for (Employee emp: empList){
-            System.out.println("Name: " + emp.getName() + "\n" + "Salary: " + emp.getSalary() + "\nAddress: " + emp.getCountry() + ", " + emp.getCity() + ", " + emp.getStreet() + " " + emp.getBuilding() + "\n" + "Sex: " + emp.getSex() + "\n" + "Age: " + emp.getAge() + "\n" + "Experience: " + emp.getWorkingExperience() + " months \n");
-        }
-    }
-
-    private static void WorkingBetween(List<Employee> empList) {
-        for (Employee emp: empList) {
+    private static void WorkingBetween() {
+        String employeeTableFormat = "| %-50s | %-45s | %-7s | %-5d | %-20d |";
+        System.out.format("+----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
+        System.out.format("| Employee`s name                                    | Address                                       | Sex     | Age   | Experience(in month) |%n");
+        System.out.format("+----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
+        for (Employee emp: Main.empList) {
             SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy", Locale.ENGLISH);
             Date startDate = new Date();
             Calendar c = Calendar.getInstance();
@@ -267,7 +324,8 @@ public class Main {
             long diff = exp.getTime() - startDate.getTime();
             long hours = (diff / (1000 * 60 * 60));
             if (1000 < hours && hours < 2000 ){
-                System.out.println("Name: " + emp.getName() + "\n" + "Salary: " + emp.getSalary() + "\nAddress: " + emp.getCountry() + ", " + emp.getCity() + ", " + emp.getStreet() + " " + emp.getBuilding() + "\n" + "Sex: " + emp.getSex() + "\n" + "Age: " + emp.getAge() + "\n" + "Experience: " + emp.getWorkingExperience() + " months \n");
+                System.out.format(employeeTableFormat, emp.name, emp.country + ", " + emp.city + ", " + emp.street + ", " + emp.building, emp.sex, emp.age, emp.workingExperience);
+                System.out.format("\n-----------------------------------------------------+-----------------------------------------------+---------+-------+----------------------+%n");
             }
         }
     }
